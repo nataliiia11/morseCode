@@ -1,4 +1,6 @@
-fun main(args: Array<String>) {
+import jdk.nashorn.internal.objects.NativeString.toLowerCase
+
+fun main() {
     var morseEngMap = mutableMapOf(
              'a'  to ".-",
              'b'  to "-...",
@@ -40,12 +42,14 @@ fun main(args: Array<String>) {
              '8'  to "---..",
              '9'  to "----.",
             '0'  to "-----"
-        );
+        )
     
     println("Please enter your Morse message")
     var text = readLine()
     if (text != null) {
-        var chars: CharArray =  text.  toCharArray()
+        text =  toLowerCase(text)
+        val chars: CharArray =  text.toCharArray()
+
         for (char in chars) {
             if(morseEngMap[char] != null) {
                 print(morseEngMap [char] + " ")
@@ -54,9 +58,9 @@ fun main(args: Array<String>) {
     }
     println()
     println("please enter your Morse message")
-    var code = readLine()
+    val code = readLine()
     if (code != null) {
-        var words = code.split("\\s".  toRegex()).  toTypedArray()
+        val words = code.split("\\s".toRegex()).toTypedArray()
         for(word in words) {
             val matchingKey = morseEngMap.entries.find { it.value == word }?.key
             if(matchingKey != null) {
